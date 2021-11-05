@@ -1,6 +1,9 @@
 module com.example.controls {
     requires javafx.controls;
     requires javafx.fxml;
+    requires imagesrepo;
+
+
 
 
     opens com.example.controls to javafx.fxml;
