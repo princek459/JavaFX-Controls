@@ -25,128 +25,146 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.Accordion?>
 <GridPane xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.example.controls.HelloController"
-          alignment="CENTER" hgap="10" vgap="10">
+            fx:controller="com.example.controls.HelloController"
+                alignment="CENTER" hgap="10" vgap="10">
 
-    <Button GridPane.rowIndex="0" GridPane.columnIndex="0" text="Click Me" >
-        <graphic>
-            <ImageView>
-                <Image url="@/toolbarButtonGraphics/general/TipOfTheDay24.gif" />
-            </ImageView>
-        </graphic>
-    </Button>
+    <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="0"
+            onKeyReleased="#handleKeyReleased"/>
+    <Button fx:id="helloButton" text="Say Hello" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                onAction="#onButtonClicked" />
 
-    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text="This is a label"
-           textFill="blue" wrapText="true">
-        <font>
-            <Font name="Ariel italic" size="12" />
-        </font>
-        <graphic>
-            <ImageView>
-                <Image url="@/toolbarButtonGraphics/general/Information24.gif" />
-            </ImageView>
-        </graphic>
-    </Label>
+    <Button fx:id="byeButton" text="Say Bye" GridPane.rowIndex="1" GridPane.columnIndex="1"
+            onAction="#onButtonClicked" />
 
-<!--            adding the toggle feature-->
-    <fx:define>
-        <ToggleGroup  fx:id="colorToggleGroup" />
-    </fx:define>
-
-    <!--           RadioButton -->
-    <VBox GridPane.rowIndex="0" GridPane.columnIndex="2">
-    <RadioButton  text="Red" toggleGroup="$colorToggleGroup" selected="true"/>
-    <RadioButton  text="Orange" toggleGroup="$colorToggleGroup" />
-    <RadioButton  text="Green" toggleGroup="$colorToggleGroup" />
-    </VBox>
+    <CheckBox fx:id="ourCheckBox" text="Clear the field after saying hello or bye" GridPane.rowIndex="2"
+              GridPane.columnIndex="0" GridPane.columnSpan="2"
+              onAction="#handleChange"  />
 
 
-    <CheckBox text="Subscribe to our newsletter" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
-<!--       indeterminate="true" />-->
 
-<!--            Check Box  -->
-    <VBox GridPane.rowIndex="0" GridPane.columnIndex="6">
-        <CheckBox text="Dog" />
-        <CheckBox text="Rabbit" />
-        <CheckBox text="Cat" />
-    </VBox>
 
-    <ToggleButton text="Toggle Me" GridPane.rowIndex="0" GridPane.columnIndex="7" />
 
-<!--            ToggleButton-->
-    <HBox GridPane.rowIndex="0" GridPane.columnIndex="8" >
-        <ToggleButton text="Toggle Me" />
-        <ToggleButton text="Hello" />
-        <ToggleButton text="Bye" />
-    </HBox>
 
-<!--            TextField and PasswordField     -->
-    <TextField GridPane.rowIndex="1" GridPane.columnIndex="0" />
-    <PasswordField GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
-<!--            Combo box example       -->
-    <ComboBox GridPane.rowIndex="1" GridPane.columnIndex="2" GridPane.columnSpan="3">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="This is Option 1" />
-                <String fx:value="This is Option 2" />
-                <String fx:value="This is Option 3" />
-                <String fx:value="This is Option 4" />
-                <String fx:value="This is Option 5" />
-            </FXCollections>
-        </items>
-<!--       Default choice -->
-        <value>
-            <String fx:value="This is Option 4" />
-        </value>
-    </ComboBox>
+<!--    <Button GridPane.rowIndex="0" GridPane.columnIndex="0" text="Click Me" >-->
+<!--        <graphic>-->
+<!--            <ImageView>-->
+<!--                <Image url="@/toolbarButtonGraphics/general/TipOfTheDay24.gif" />-->
+<!--            </ImageView>-->
+<!--        </graphic>-->
+<!--    </Button>-->
+
+<!--    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text="This is a label"-->
+<!--           textFill="blue" wrapText="true">-->
+<!--        <font>-->
+<!--            <Font name="Ariel italic" size="12" />-->
+<!--        </font>-->
+<!--        <graphic>-->
+<!--            <ImageView>-->
+<!--                <Image url="@/toolbarButtonGraphics/general/Information24.gif" />-->
+<!--            </ImageView>-->
+<!--        </graphic>-->
+<!--    </Label>-->
+
+<!--&lt;!&ndash;            adding the toggle feature&ndash;&gt;-->
+<!--    <fx:define>-->
+<!--        <ToggleGroup  fx:id="colorToggleGroup" />-->
+<!--    </fx:define>-->
+
+<!--    &lt;!&ndash;           RadioButton &ndash;&gt;-->
+<!--    <VBox GridPane.rowIndex="0" GridPane.columnIndex="2">-->
+<!--    <RadioButton  text="Red" toggleGroup="$colorToggleGroup" selected="true"/>-->
+<!--    <RadioButton  text="Orange" toggleGroup="$colorToggleGroup" />-->
+<!--    <RadioButton  text="Green" toggleGroup="$colorToggleGroup" />-->
+<!--    </VBox>-->
+
+
+<!--    <CheckBox text="Subscribe to our newsletter" GridPane.rowIndex="0" GridPane.columnIndex="5"/>-->
+<!--&lt;!&ndash;       indeterminate="true" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            Check Box  &ndash;&gt;-->
+<!--    <VBox GridPane.rowIndex="0" GridPane.columnIndex="6">-->
+<!--        <CheckBox text="Dog" />-->
+<!--        <CheckBox text="Rabbit" />-->
+<!--        <CheckBox text="Cat" />-->
+<!--    </VBox>-->
+
+<!--    <ToggleButton text="Toggle Me" GridPane.rowIndex="0" GridPane.columnIndex="7" />-->
+
+<!--&lt;!&ndash;            ToggleButton&ndash;&gt;-->
+<!--    <HBox GridPane.rowIndex="0" GridPane.columnIndex="8" >-->
+<!--        <ToggleButton text="Toggle Me" />-->
+<!--        <ToggleButton text="Hello" />-->
+<!--        <ToggleButton text="Bye" />-->
+<!--    </HBox>-->
+
+<!--&lt;!&ndash;            TextField and PasswordField     &ndash;&gt;-->
+<!--    <TextField GridPane.rowIndex="1" GridPane.columnIndex="0" />-->
+<!--    <PasswordField GridPane.rowIndex="1" GridPane.columnIndex="1" />-->
+
+<!--&lt;!&ndash;            Combo box example       &ndash;&gt;-->
+<!--    <ComboBox GridPane.rowIndex="1" GridPane.columnIndex="2" GridPane.columnSpan="3">-->
+<!--        <items>-->
+<!--            <FXCollections fx:factory="observableArrayList">-->
+<!--                <String fx:value="This is Option 1" />-->
+<!--                <String fx:value="This is Option 2" />-->
+<!--                <String fx:value="This is Option 3" />-->
+<!--                <String fx:value="This is Option 4" />-->
+<!--                <String fx:value="This is Option 5" />-->
+<!--            </FXCollections>-->
+<!--        </items>-->
+<!--&lt;!&ndash;       Default choice &ndash;&gt;-->
+<!--        <value>-->
+<!--            <String fx:value="This is Option 4" />-->
+<!--        </value>-->
+<!--    </ComboBox>-->
 <!--        ChoiceBox Example-->
-    <ChoiceBox GridPane.rowIndex="1" GridPane.columnIndex="5">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="CB 1" />
-                <String fx:value="CB 2" />
-                <String fx:value="CB 3" />
-                <String fx:value="CB 4" />
-                <String fx:value="CB 5" />
-            </FXCollections>
-        </items>
-    </ChoiceBox>
+<!--    <ChoiceBox GridPane.rowIndex="1" GridPane.columnIndex="5">-->
+<!--        <items>-->
+<!--            <FXCollections fx:factory="observableArrayList">-->
+<!--                <String fx:value="CB 1" />-->
+<!--                <String fx:value="CB 2" />-->
+<!--                <String fx:value="CB 3" />-->
+<!--                <String fx:value="CB 4" />-->
+<!--                <String fx:value="CB 5" />-->
+<!--            </FXCollections>-->
+<!--        </items>-->
+<!--    </ChoiceBox>-->
 
-<!--        Slider Example-->
-    <Slider GridPane.rowIndex="2" GridPane.columnIndex="0"
-                GridPane.columnSpan="4" min="0" max="100"
-                    showTickLabels="true" showTickMarks="true"
-                        minorTickCount="4" snapToTicks="true"/>
+<!--&lt;!&ndash;        Slider Example&ndash;&gt;-->
+<!--    <Slider GridPane.rowIndex="2" GridPane.columnIndex="0"-->
+<!--                GridPane.columnSpan="4" min="0" max="100"-->
+<!--                    showTickLabels="true" showTickMarks="true"-->
+<!--                        minorTickCount="4" snapToTicks="true"/>-->
 
-<!--            Spinner Example-->
-    <Spinner GridPane.rowIndex="2" GridPane.columnIndex="4"
-                min="0" max="100"  editable="true"/>
+<!--&lt;!&ndash;            Spinner Example&ndash;&gt;-->
+<!--    <Spinner GridPane.rowIndex="2" GridPane.columnIndex="4"-->
+<!--                min="0" max="100"  editable="true"/>-->
 
-<!--            Colour picker example-->
-    <ColorPicker GridPane.rowIndex="3" GridPane.columnIndex="0" />
+<!--&lt;!&ndash;            Colour picker example&ndash;&gt;-->
+<!--    <ColorPicker GridPane.rowIndex="3" GridPane.columnIndex="0" />-->
 
 <!--            Date Picker example-->
-    <DatePicker GridPane.rowIndex="3" GridPane.columnIndex="1" />
+<!--    <DatePicker GridPane.rowIndex="3" GridPane.columnIndex="1" />-->
 
-<!--            TitledPane example-->
-    <Accordion GridPane.rowIndex="3" GridPane.columnIndex="2" GridPane.columnSpan="2"
-                    expandedPane="$tp3">
-        <panes>
-            <TitledPane text="Titled Pane" GridPane.rowIndex="3" GridPane.columnIndex="2">
-                <Label text="Label in titled pane" />
-            </TitledPane>
-            <TitledPane text="Titled Pane 2" GridPane.rowIndex="3" GridPane.columnIndex="2">
-                <Label text="Label in titled pane" />
-            </TitledPane>
-            <TitledPane fx:id="tp3" text="Titled Pane 3" GridPane.rowIndex="3" GridPane.columnIndex="2">
-                <Label text="Label in titled pane" />
-            </TitledPane>
-        </panes>
-    </Accordion>
-    <TitledPane text="Titled Pane" GridPane.rowIndex="3" GridPane.columnIndex="5">
-        <Label text="Label in titled pane" />
-    </TitledPane>
+<!--&lt;!&ndash;            TitledPane example&ndash;&gt;-->
+<!--    <Accordion GridPane.rowIndex="3" GridPane.columnIndex="2" GridPane.columnSpan="2"-->
+<!--                    expandedPane="$tp3">-->
+<!--        <panes>-->
+<!--            <TitledPane text="Titled Pane" GridPane.rowIndex="3" GridPane.columnIndex="2">-->
+<!--                <Label text="Label in titled pane" />-->
+<!--            </TitledPane>-->
+<!--            <TitledPane text="Titled Pane 2" GridPane.rowIndex="3" GridPane.columnIndex="2">-->
+<!--                <Label text="Label in titled pane" />-->
+<!--            </TitledPane>-->
+<!--            <TitledPane fx:id="tp3" text="Titled Pane 3" GridPane.rowIndex="3" GridPane.columnIndex="2">-->
+<!--                <Label text="Label in titled pane" />-->
+<!--            </TitledPane>-->
+<!--        </panes>-->
+<!--    </Accordion>-->
+<!--    <TitledPane text="Titled Pane" GridPane.rowIndex="3" GridPane.columnIndex="5">-->
+<!--        <Label text="Label in titled pane" />-->
+<!--    </TitledPane>-->
 
 
 </GridPane>
