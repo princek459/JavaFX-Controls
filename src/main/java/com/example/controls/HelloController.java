@@ -1,5 +1,6 @@
 package com.example.controls;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,9 +18,13 @@ public class HelloController {
     private Button byeButton;
     @FXML
     private CheckBox ourCheckBox;
+    @FXML
+    private Label ourLabel;
 
     @FXML
     public void onButtonClicked(ActionEvent e){
+
+
 
         if(e.getSource().equals(helloButton)){
             System.out.println("Hello, " + nameField.getText());
@@ -27,11 +32,31 @@ public class HelloController {
             System.out.println("Bye, " + nameField.getText());
         }
 
-//        try{
-//            thread.sleep(10000);
-//        }catch (InterruptedException event){
-//
-//        }
+        // background thread to sleep
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    String s = Platform.isFxApplicationThread() ? "UI Thread" : "Background Thread";
+                    System.out.println("I'm going to sleep on the: " + s);
+                    Thread.sleep(10000);
+                    // to stop the exception in thread error
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            String s = Platform.isFxApplicationThread() ? "UI Thread" : "Background Thread";
+                            System.out.println("I'm updating the label on the: " + s);
+                            ourLabel.setText("We did something!");
+                        }
+                    });
+                }catch (InterruptedException event){
+                }
+            }
+        };
+        // code to start the thread
+        new Thread(task).start();
+
+
         if (ourCheckBox.isSelected()){
             nameField.clear();
             helloButton.setDisable(true);
